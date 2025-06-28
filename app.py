@@ -4,6 +4,8 @@ from config import Config
 from models import db, User
 from blueprints.auth import auth_bp
 from blueprints.main import main_bp
+from blueprints.pets import pets_bp
+from blueprints.profile import profile_bp
 
 def create_app():
     app = Flask(__name__)
@@ -25,6 +27,8 @@ def create_app():
     # Register blueprints
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(main_bp)
+    app.register_blueprint(pets_bp, url_prefix='/pets')
+    app.register_blueprint(profile_bp, url_prefix='/profile')
     
     # Create database tables
     with app.app_context():
