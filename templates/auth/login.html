@@ -3,17 +3,226 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<h1>Login</h1>
-<form method="POST">
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leaves {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%2327ae60" d="M12,2C17.52,2 22,6.48 22,12C22,17.52 17.52,22 12,22C6.48,22 2,17.52 2,12C2,6.48 6.48,2 12,2Z"/></svg>') no-repeat;
+            animation: falling 10s infinite linear;
+        }
+
+        
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .animal-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: #f39c12;
+            border-radius: 60%;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .animal-avatar:hover {
+            transform: scale(1.1);
+        }
+
+        .animal-face {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .eyes {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+
+        .eye {
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .eye::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #000;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border-color: #f39c12;
+            outline: none;
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        input:focus + label,
+        input:not(:placeholder-shown) + label {
+            top: -10px;
+            left: 10px;
+            font-size: 12px;
+            background: white;
+            padding: 0 5px;
+            color: #f39c12;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #f39c12;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .signup-link a {
+            color: #f39c12;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+        video#bg-video{
+      position:fixed ;
+      top: ;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;}
+    </style>
+</head>
+<body>
+    <video id="bg-video" height="10vh" width="10vw" autoplay muted loop > 
+<source src=/static/video.mp4 type="video/mp4">
+</video>
+   
     </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+
+    <div class="login-container">
+        <div class="animal-avatar">
+            <div class="animal-face">
+                <div class="eyes">
+                    <div class="eye"></div>
+                    <div class="eye"></div>
+                </div>
+            </div>
+        </div>
+        <h2>Welcome to the Jungle!</h2>
+        <form>
+            <div class="input-group">
+                <input type="email" id="email" placeholder=" ">
+                <label for="email">Email</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder=" ">
+                <label for="password">Password</label>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="signup-link">
+            New to the jungle? <a href="signup.html">Sign up here</a>
+        </div>
     </div>
-    <button type="submit">Login</button>
-</form>
-<p><a href="{{ url_for('auth.register') }}">Register</a></p>
+</body>
+</html>
 {% endblock %}
